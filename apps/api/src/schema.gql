@@ -1,0 +1,33 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateTaskInput {
+  completed: Boolean!
+  description: String!
+  title: String!
+}
+
+type Mutation {
+  createTask(createTaskInput: CreateTaskInput!): Task!
+  removeTask(id: String!): Task!
+  updateTask(updateTaskInput: UpdateTaskInput!): Task!
+}
+
+type Query {
+  task(id: String!): Task!
+  tasks: [Task!]!
+}
+
+type Task {
+  completed: Boolean!
+  description: String!
+  title: String!
+}
+
+input UpdateTaskInput {
+  completed: Boolean
+  description: String
+  id: String!
+  title: String
+}
