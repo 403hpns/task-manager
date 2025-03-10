@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ClientApolloProvider>
       <ClientThemeProvider>
-        <SnackbarProvider maxSnack={4} autoHideDuration={3000}>
+        <SnackbarProvider maxSnack={4} autoHideDuration={3000} preventDuplicate>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <ModalProvider>
               <App />
