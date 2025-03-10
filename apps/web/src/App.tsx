@@ -44,19 +44,12 @@ function App() {
   const { closeModal, isModalOpen, modalProps } = useModal();
 
   return (
-    <Stack alignItems="center" minHeight={'100vh'} justifyContent="center">
+    <Stack height="100vh" justifyContent="center" overflow="hidden">
       <CssBaseline enableColorScheme />
       <BackgroundBox />
 
-      <CustomModal
-        isModalOpen={isModalOpen}
-        onClose={closeModal}
-        title={modalProps?.title || ''}
-        children={modalProps?.children}
-      />
-
       <Container maxWidth={'md'}>
-        <Stack spacing={4}>
+        <Stack spacing={4} justifyContent="center" my={12}>
           <Header />
 
           <Stack component="main" gap={2}>
@@ -65,6 +58,13 @@ function App() {
           </Stack>
         </Stack>
       </Container>
+
+      <CustomModal
+        isModalOpen={isModalOpen}
+        onClose={closeModal}
+        title={modalProps?.title || ''}
+        children={modalProps?.children}
+      />
     </Stack>
   );
 }

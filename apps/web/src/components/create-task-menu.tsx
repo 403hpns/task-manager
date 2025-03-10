@@ -97,7 +97,7 @@ function CreateTaskMenu() {
           <FormControl fullWidth>
             <TextField
               autoFocus
-              placeholder="Make a Task Manager app for Typeofcode :-)"
+              placeholder="Create a Task Manager app for Typeofcode :-)"
               {...register('title')}
               error={!!errors.title}
               helperText={errors.title?.message}

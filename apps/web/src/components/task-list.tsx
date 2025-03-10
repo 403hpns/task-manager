@@ -62,7 +62,7 @@ function TaskList() {
       p={2.5}
       borderRadius="12px"
       boxShadow={'0 0 1px rgba(154, 68, 255, 0.4)'}
-      sx={{ mt: 2, backdropFilter: 'blur(25px)' }}
+      sx={{ backdropFilter: 'blur(25px)' }}
     >
       <ListToolbar
         refetch={refetch}
@@ -77,9 +77,8 @@ function TaskList() {
       <div
         ref={listRef}
         style={{
-          height: '50vh',
+          maxHeight: '30vh',
           overflowY: 'auto',
-          position: 'relative',
         }}
       >
         <List
@@ -110,7 +109,7 @@ function TaskList() {
 
         {sortedTasks.length === 0 && (
           <Stack
-            py={2}
+            height="100%"
             alignItems="center"
             justifyContent="center"
             color="GrayText"
