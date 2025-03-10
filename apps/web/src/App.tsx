@@ -3,7 +3,6 @@ import CreateTaskMenu from './components/create-task-menu';
 import { CustomModal } from './components/dialogs/custom-dialog';
 import Header from './components/header';
 import TaskList from './components/task-list';
-import ThemeToggle from './components/theme-toggle';
 import { useModal } from './hooks/use-modal';
 
 const BackgroundBox = styled(Box)`
@@ -48,7 +47,6 @@ function App() {
     <Stack alignItems="center" minHeight={'100vh'} justifyContent="center">
       <CssBaseline enableColorScheme />
       <BackgroundBox />
-      <ThemeToggle />
 
       <CustomModal
         isModalOpen={isModalOpen}
