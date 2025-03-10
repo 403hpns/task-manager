@@ -56,3 +56,11 @@ mv .env.example .env
 ```sh
 docker compose up -d
 ```
+
+## Screenshots
+
+![librewolf_vf4eiyRbHR](https://github.com/user-attachments/assets/3fa2167f-8b1c-4820-985c-9b49604d329b)
+
+
+
+
