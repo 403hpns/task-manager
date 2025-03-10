@@ -59,7 +59,7 @@ function CreateTaskMenu() {
       action: (
         <>
           <Button
-            variant="outlined"
+            sx={{ color: 'white' }}
             onClick={() => {
               handleUndoCreateTask(data?.createTask?.id);
             }}
