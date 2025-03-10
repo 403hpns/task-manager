@@ -4,7 +4,7 @@ import { Box, List, Stack, Typography } from '@mui/material';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { enqueueSnackbar } from 'notistack';
 import { useRef, useState } from 'react';
-import { GET_TASKS } from '../lib/query';
+import { GET_TASKS } from '../utils/apollo/query';
 import ListToolbar from './list-toolbar';
 import TaskListItem from './task-list-item';
 

@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { Menu, MenuItem } from '@mui/material';
-import { UPDATE_TASK } from '../lib/mutations';
-import { GET_TASKS } from '../lib/query';
+import { UPDATE_TASK } from '../utils/apollo/mutations';
+import { GET_TASKS } from '../utils/apollo/query';
 
 interface TaskPriorityMenuProps {
   taskId: string;

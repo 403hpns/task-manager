@@ -13,8 +13,8 @@ import dayjs from 'dayjs';
 import { enqueueSnackbar } from 'notistack';
 import { Controller, useForm } from 'react-hook-form';
 import { useModal } from '../../hooks/use-modal';
-import { CREATE_TASK } from '../../lib/mutations';
-import { GET_TASKS } from '../../lib/query';
+import { CREATE_TASK } from '../../utils/apollo/mutations';
+import { GET_TASKS } from '../../utils/apollo/query';
 import {
   CreateFullTaskSchema,
   createFullTaskSchema,

@@ -21,8 +21,8 @@ import dayjs from 'dayjs';
 import { enqueueSnackbar } from 'notistack';
 import { ChangeEvent, useState } from 'react';
 import { useModal } from '../hooks/use-modal';
-import { DELETE_TASK, UPDATE_TASK } from '../lib/mutations';
-import { GET_TASKS } from '../lib/query';
+import { DELETE_TASK, UPDATE_TASK } from '../utils/apollo/mutations';
+import { GET_TASKS } from '../utils/apollo/query';
 import UpdateTaskDialog from './dialogs/update-task-dialog';
 import TaskPriorityMenu from './task-priority-menu';
 
@@ -45,7 +45,7 @@ const priorityColors = {
   high: 'error',
 } as const;
 
-type Priority = "low" | "medium" | "high"
+type Priority = 'low' | 'medium' | 'high';
 
 const getColor = (priority: keyof typeof priorityColors) => {
   return priorityColors[priority];

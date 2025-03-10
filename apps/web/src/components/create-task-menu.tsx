@@ -11,8 +11,8 @@ import {
 import { enqueueSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { useModal } from '../hooks/use-modal';
-import { CREATE_TASK, DELETE_TASK } from '../lib/mutations';
-import { GET_TASKS } from '../lib/query';
+import { CREATE_TASK, DELETE_TASK } from '../utils/apollo/mutations';
+import { GET_TASKS } from '../utils/apollo/query';
 import {
   CreateSimpleTaskSchema,
   createSimpleTaskSchema,

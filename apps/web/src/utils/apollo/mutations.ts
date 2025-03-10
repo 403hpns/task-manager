@@ -9,19 +9,19 @@ export const CREATE_TASK = gql`
   }
 `;
 
-export const DELETE_TASK = gql`
-  mutation RemoveTask($id: String!) {
-    removeTask(id: $id) {
-      title
-    }
-  }
-`;
-
 export const UPDATE_TASK = gql`
   mutation UpdateTask($updateTaskInput: UpdateTaskInput!) {
     updateTask(updateTaskInput: $updateTaskInput) {
       title
       completed
+    }
+  }
+`;
+
+export const DELETE_TASK = gql`
+  mutation RemoveTask($id: String!) {
+    removeTask(id: $id) {
+      title
     }
   }
 `;
