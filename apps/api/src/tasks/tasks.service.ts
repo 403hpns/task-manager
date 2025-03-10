@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateTaskInput } from './dto/create-task.input';
 import { UpdateTaskInput } from './dto/update-task.input';
+import { TaskStatusFilter } from './enums/task-status-filter.enum';
 import { Task } from './schemas/task.schema';
 
 @Injectable()
@@ -16,8 +17,16 @@ export class TasksService {
     return createdTask.save();
   }
 
-  async findAll() {
-    return await this.taskModel.find().exec();
+  async findAll(filter: TaskStatusFilter = TaskStatusFilter.ALL) {
+    const query: Partial<Task> = {};
+
+    if (filter === TaskStatusFilter.OPEN) {
+      query.completed = false;
+    } else if (filter === TaskStatusFilter.CLOSED) {
+      query.completed = true;
+    }
+
+    return await this.taskModel.find(query).exec();
   }
 
   async findOne(id: string) {
@@ -30,5 +39,15 @@ export class TasksService {
 
   async remove(id: string) {
     return await this.taskModel.findByIdAndDelete(id);
+  }
+
+  async getStats() {
+    const [total, open, closed] = await Promise.all([
+      this.taskModel.countDocuments().exec(),
+      this.taskModel.countDocuments({ completed: false }).exec(),
+      this.taskModel.countDocuments({ completed: true }).exec(),
+    ])
+
+    return {total, open, closed}
   }
 }
