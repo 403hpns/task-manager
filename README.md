@@ -49,6 +49,7 @@ bun install
 
 ### 3️⃣ Rename `.env.example` to `.env`
 ```sh
+cd apps/web
 mv .env.example .env
 ```
 
