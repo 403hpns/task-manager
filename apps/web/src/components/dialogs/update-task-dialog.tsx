@@ -29,7 +29,7 @@ interface UpdateTaskDialogProps {
 function UpdateTaskDialog({ taskId }: UpdateTaskDialogProps) {
   const { closeModal } = useModal();
 
-  const { data, loading, client } = useQuery(GET_TASK, {
+  const { data, loading } = useQuery(GET_TASK, {
     variables: { id: taskId },
   });
 
@@ -67,7 +67,7 @@ function UpdateTaskDialog({ taskId }: UpdateTaskDialogProps) {
     await updateTask({
       variables: {
         updateTaskInput: {
-          id: data?.task?.id || '',
+          id: data?.task?.id,
           title: formValues.name,
           description: formValues.description,
           priority: formValues.priority,

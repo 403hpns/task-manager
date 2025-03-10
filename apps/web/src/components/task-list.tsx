@@ -1,12 +1,14 @@
 import { useQuery } from '@apollo/client';
 import { SentimentDissatisfied } from '@mui/icons-material';
-import { Box, List, Stack, Typography } from '@mui/material';
+import { Box, CircularProgress, List, Stack, Typography } from '@mui/material';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { enqueueSnackbar } from 'notistack';
 import { useRef, useState } from 'react';
 import { GET_TASKS } from '../utils/apollo/query';
 import ListToolbar from './list-toolbar';
 import TaskListItem from './task-list-item';
+
+const ITEM_SIZE = 90;
 
 type Task = {
   id?: string;
@@ -23,8 +25,6 @@ type TasksQuery = {
 };
 
 export type Filter = 'ALL' | 'OPEN' | 'CLOSED';
-
-const ITEM_SIZE = 72;
 
 function TaskList() {
   const [currentFilterPicked, setCurrentPicked] = useState<Filter>('ALL');
@@ -48,10 +48,6 @@ function TaskList() {
     estimateSize: () => ITEM_SIZE,
     overscan: 5,
   });
-
-  if (loading) {
-    return <p>Ładowanie...</p>;
-  }
 
   if (error) {
     enqueueSnackbar(error.message, { variant: 'error' });
@@ -77,6 +73,7 @@ function TaskList() {
       <div
         ref={listRef}
         style={{
+          marginTop: '12px',
           maxHeight: '30vh',
           overflowY: 'auto',
         }}
@@ -107,7 +104,7 @@ function TaskList() {
           })}
         </List>
 
-        {sortedTasks.length === 0 && (
+        {!loading && sortedTasks.length === 0 && (
           <Stack
             height="100%"
             alignItems="center"
@@ -116,6 +113,16 @@ function TaskList() {
           >
             <SentimentDissatisfied fontSize="large" />
             <Typography>No tasks</Typography>
+          </Stack>
+        )}
+
+        {loading && (
+          <Stack alignItems="center" py={12}>
+            <CircularProgress
+              sx={{
+                textAlign: 'center',
+              }}
+            />
           </Stack>
         )}
       </div>

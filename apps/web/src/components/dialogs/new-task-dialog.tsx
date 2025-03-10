@@ -21,7 +21,7 @@ import {
 } from '../../utils/schemas/create-task';
 
 function NewTaskDialog() {
-  const { closeModal, isModalOpen } = useModal();
+  const { closeModal } = useModal();
 
   const {
     control,

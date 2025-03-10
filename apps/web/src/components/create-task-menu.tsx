@@ -20,6 +20,7 @@ import {
 import NewTaskDialog from './dialogs/new-task-dialog';
 
 function CreateTaskMenu() {
+  const [deleteTask] = useMutation(DELETE_TASK);
   const [createTask, { loading: isCreatingTask }] = useMutation(CREATE_TASK, {
     update(cache, { data: { createTask } }) {
       cache.modify({
@@ -32,9 +33,7 @@ function CreateTaskMenu() {
     },
   });
 
-  const [deleteTask, { loading: isDeletingTask }] = useMutation(DELETE_TASK);
-
-  const { openModal, closeModal, isModalOpen, modalProps } = useModal();
+  const { openModal } = useModal();
 
   const {
     register,
@@ -60,6 +59,7 @@ function CreateTaskMenu() {
       action: (
         <>
           <Button
+            variant="outlined"
             onClick={() => {
               handleUndoCreateTask(data?.createTask?.id);
             }}

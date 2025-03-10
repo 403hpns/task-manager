@@ -81,12 +81,12 @@ function TaskListItem({ task }: TaskListItemProps) {
   const handleDeleteTask = async (id: string) => {
     if (id.trim() === '') return;
 
-    const { data } = await deleteTask({
+    await deleteTask({
       variables: { id },
       refetchQueries: [GET_TASKS],
     });
 
-    enqueueSnackbar(`Zadanie ${data.removeTask.title} usunięte`, {
+    enqueueSnackbar(`Zadanie usunięte`, {
       variant: 'success',
     });
   };
