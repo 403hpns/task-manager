@@ -20,8 +20,10 @@ Task management application built with **NestJS, GraphQL, and MongoDB** for the 
 
 - Task creation, updating, and deletion
 - GraphQL API for efficient data fetching
-- Input validation with **Zod**
-- High-performance UI using **TanStack Virtual** for virtualization
+- Input validation with Zod
+- Task list virtualization with TanStack Virtual
+- Throttling for better performance
+- Data storage in MongoDB
 
 ## 🛠️ Installation & Setup
 
@@ -29,7 +31,7 @@ Task management application built with **NestJS, GraphQL, and MongoDB** for the 
 
 - Git
 - Node.js
-- Package manager (Bun prefered)
+- Package manager (Bun preferred)
 - Docker
     
 ### 1️⃣ Clone the repository
@@ -53,9 +55,19 @@ cd apps/web
 mv .env.example .env
 ```
 
-### 4️⃣ Launch Docker apps
+### 4️⃣ Launch Docker
 ```sh
 docker compose up -d
+```
+
+### 5️⃣ Launch apps
+```sh
+bun dev
+```
+
+### 6️⃣ Visit browser
+```
+http://localhost:5173
 ```
 
 ## Screenshots
