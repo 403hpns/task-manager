@@ -1,94 +1,73 @@
-import { Delete, Edit } from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  CssBaseline,
-  IconButton,
-  Input,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Stack,
-  Typography,
-} from '@mui/material';
-import { useState } from 'react';
+import { Box, Container, CssBaseline, Stack, styled } from '@mui/material';
+import CreateTaskMenu from './components/create-task-menu';
+import { CustomModal } from './components/dialogs/custom-dialog';
+import Header from './components/header';
+import TaskList from './components/task-list';
 import ThemeToggle from './components/theme-toggle';
+import { useModal } from './hooks/use-modal';
 
-type Task = {
-  id: string;
-  text: string;
-  completed: boolean;
-};
-
-const defaultTasks: Task[] = [
-  { id: '1', text: 'Task 1', completed: false },
-  { id: '2', text: 'Task 2', completed: false },
-];
+const BackgroundBox = styled(Box)`
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #0a0a0a;
+  background-image:
+    radial-gradient(
+      circle at top left,
+      RGBA(154, 68, 255, 0.5) 0%,
+      transparent 70%
+    ),
+    linear-gradient(to bottom right, RGBA(0, 0, 0, 0.4) 50%, transparent 100%),
+    radial-gradient(
+      circle at bottom right,
+      RGBA(55, 2, 105, 0.7) 0%,
+      transparent 70%
+    ),
+    repeating-linear-gradient(
+      rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 80px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 80px
+    );
+  background-size: 100% 100%;
+  background-position: center;
+  pointer-events: none;
+`;
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>(defaultTasks);
-  const [newTaskInputValue, setNewTaskInputValue] = useState('');
-
-  const createTask = () => {
-    if (newTaskInputValue.trim() === '') {
-      return;
-    }
-
-    setTasks((prevTasks) => [
-      ...prevTasks,
-      { id: Date.now().toString(), text: newTaskInputValue, completed: false },
-    ]);
-
-    setNewTaskInputValue('');
-  };
+  const { closeModal, isModalOpen, modalProps } = useModal();
 
   return (
-    <>
+    <Stack alignItems="center" minHeight={'100vh'} justifyContent="center">
       <CssBaseline enableColorScheme />
+      <BackgroundBox />
       <ThemeToggle />
 
-      <Container>
-        <Box sx={{ width: '100%' }}>
-          <Typography variant="h5">Lista zadań</Typography>
+      <CustomModal
+        isModalOpen={isModalOpen}
+        onClose={closeModal}
+        title={modalProps?.title || ''}
+        children={modalProps?.children}
+      />
 
-          <Stack direction="row" spacing={2}>
-            <Input
-              sx={{ flex: 1 }}
-              placeholder="Nowe zadanie"
-              value={newTaskInputValue}
-              onChange={(event) => setNewTaskInputValue(event.target.value)}
-            />
+      <Container maxWidth={'md'}>
+        <Stack spacing={4}>
+          <Header />
 
-            <Button variant="contained" onClick={createTask}>
-              Dodaj
-            </Button>
+          <Stack component="main" gap={2}>
+            <CreateTaskMenu />
+            <TaskList />
           </Stack>
-
-          <List>
-            {tasks.map((task) => (
-              <ListItem key={task.id} divider>
-                <Checkbox />
-
-                <ListItemButton>
-                  <ListItemText primary={task.text} />
-                </ListItemButton>
-
-                <IconButton>
-                  <Edit />
-                </IconButton>
-
-                <IconButton>
-                  <Delete />
-                </IconButton>
-              </ListItem>
-            ))}
-          </List>
-        </Box>
+        </Stack>
       </Container>
-    </>
+    </Stack>
   );
 }
 
