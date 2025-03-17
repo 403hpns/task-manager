@@ -36,8 +36,8 @@ Task management application built with **NestJS, GraphQL, and MongoDB** for the 
     
 ### 1️⃣ Clone the repository
 ```sh
-git clone git@github.com:403hpns/typeofcode-task-manager.git
-cd typeofcode-task-manager
+git clone git@github.com:403hpns/task-manager.git
+cd task-manager
 ```
 
 ### 2️⃣ Install applications
